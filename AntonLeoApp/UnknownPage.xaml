@@ -5,7 +5,6 @@
              Title="Unknown">
     <VerticalStackLayout>
         <Label 
-            Text="Unknown"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
     </VerticalStackLayout>
