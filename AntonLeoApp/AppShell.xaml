@@ -6,9 +6,26 @@
     xmlns:local="clr-namespace:AntonLeoApp"
     Title="AntonLeoApp">
 
-    <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
+    <TabBar>
+        <ShellContent
+            Title="Home"
+            ContentTemplate="{DataTemplate local:MainPage}"
+            Route="MainPage" />
+
+        <ShellContent
+            Title="Characters"
+            ContentTemplate="{DataTemplate local:CharactersPage}"
+            Route="CharactersPage" />
+
+        <ShellContent
+            Title="UserIO"
+            ContentTemplate="{DataTemplate local:UserIOPage}"
+            Route="UserIOPage" />
+
+        <ShellContent
+            Title="Unknown"
+            ContentTemplate="{DataTemplate local:UnknownPage}"
+            Route="UnknownPage" />
+    </TabBar>
 
 </Shell>
