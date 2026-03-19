@@ -2,7 +2,9 @@
 
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="AntonLeoApp.GifPage">
+             x:Class="AntonLeoApp.GifPage"
+             NavigationPage.HasNavigationBar="False"
+             Shell.NavBarIsVisible="False">
 
     <VerticalStackLayout Padding="20" Spacing="20">
         
@@ -10,6 +12,8 @@
                Source="hello_there.gif"
                IsAnimationPlaying="True"
                HeightRequest="300" />
+        
+        
 
         <Button x:Name="BtnBack"
                 Text="Retour"

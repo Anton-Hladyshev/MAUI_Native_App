@@ -16,7 +16,7 @@ public partial class GifPage : ContentPage
     
     private async void WaitAndShowButton()
     {
-        await Task.Delay(2300); 
+        await Task.Delay(2400); 
         
         BtnBack.IsVisible = true;
         

@@ -15,18 +15,33 @@
             <Label Text="Dans cette application tu peux explorer une galaxie lointaine très lointaine"
                    FontSize="16"
                    HorizontalOptions="Center" />
+            
             <HorizontalStackLayout Spacing="10" HorizontalOptions="Center">
                 <Image Source="galactic_republic.png"
-                       WidthRequest="150"
+                       WidthRequest="200"
                 />
                 <Image Source="galactic_republic.png"
-                       WidthRequest="150"
+                       WidthRequest="200"
                 />
             </HorizontalStackLayout>
             
+            <CarouselView x:Name="MyCarousel"
+                          HeightRequest="300"
+                          CurrentItemChanged="OnCurrentItemChanged"
+                          IndicatorView="MyIndicator">
+                <CarouselView.ItemTemplate>
+                    <DataTemplate>
+                        <Image Source="{Binding .}" Aspect="AspectFill" />
+                    </DataTemplate>
+                </CarouselView.ItemTemplate>
+            </CarouselView>
+            
+            <IndicatorView x:Name="MyIndicator"
+                           HorizontalOptions="Center" />
+            
             <Button Text="Cliquez-moi"
                     Clicked="OnButtonClicked" />
-           
+
         </VerticalStackLayout>
         
     </ScrollView>
