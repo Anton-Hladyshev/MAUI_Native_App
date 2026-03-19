@@ -4,11 +4,32 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:AntonLeoApp"
-    Title="AntonLeoApp">
+    Title="AntonLeoApp"
+    Shell.FlyoutBehavior="Disabled">
 
-    <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
+    <TabBar>
+        <ShellContent
+            Title="Home"
+            ContentTemplate="{DataTemplate local:MainPage}"
+            Route="MainPage"
+            Icon="home.png" />
+
+        <ShellContent
+            Title="Characters"
+            ContentTemplate="{DataTemplate local:CharactersPage}"
+            Route="CharactersPage"
+            Icon="charecter.png" />
+
+        <ShellContent
+            Title="UserIO"
+            ContentTemplate="{DataTemplate local:UserIOPage}"
+            Route="UserIOPage"
+            Icon="addition.png" />
+
+        <ShellContent
+            Title="Unknown"
+            ContentTemplate="{DataTemplate local:UnknownPage}"
+            Route="UnknownPage" />
+    </TabBar>
 
 </Shell>
