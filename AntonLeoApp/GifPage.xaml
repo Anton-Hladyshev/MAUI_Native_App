@@ -6,9 +6,15 @@
 
     <VerticalStackLayout Padding="20" Spacing="20">
         
+        <Image x:Name="MainGif"
+               Source="hello_there.gif"
+               IsAnimationPlaying="True"
+               HeightRequest="300" />
 
-        <Button Text="Retour"
-                Clicked="OnBackClicked"/>
+        <Button x:Name="BtnBack"
+                Text="Retour"
+                IsVisible="False"
+                Clicked="OnBackClicked" />
 
     </VerticalStackLayout>
 

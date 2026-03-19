@@ -24,7 +24,7 @@
                 />
             </HorizontalStackLayout>
             
-            <Button Text="Voir animation"
+            <Button Text="Cliquez-moi"
                     Clicked="OnButtonClicked" />
            
         </VerticalStackLayout>

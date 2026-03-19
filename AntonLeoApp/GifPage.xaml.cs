@@ -11,6 +11,16 @@ public partial class GifPage : ContentPage
     public GifPage()
     {
         InitializeComponent();
+        WaitAndShowButton();
+    }
+    
+    private async void WaitAndShowButton()
+    {
+        await Task.Delay(2300); 
+        
+        BtnBack.IsVisible = true;
+        
+        MainGif.IsAnimationPlaying = false;
     }
     
     private async void OnBackClicked(object sender, EventArgs e)
