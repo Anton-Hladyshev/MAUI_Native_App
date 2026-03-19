@@ -24,6 +24,9 @@
                 />
             </HorizontalStackLayout>
             
+            <Button Text="Voir animation"
+                    Clicked="OnButtonClicked" />
+           
         </VerticalStackLayout>
         
     </ScrollView>
