@@ -2,7 +2,7 @@ using System.Text.Json.Serialization;
 
 namespace AntonLeoApp.Model.Dtos;
 
-public class CreatureDto
+public abstract class CreatureDto : IDto
 {
     [JsonPropertyName("_id")]
     public string? Id { get; set; }

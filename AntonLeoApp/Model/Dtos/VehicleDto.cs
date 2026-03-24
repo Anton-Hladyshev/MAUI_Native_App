@@ -1,9 +1,8 @@
 using System.Text.Json.Serialization;
 
-
 namespace AntonLeoApp.Model.Dtos;
 
-public abstract class DroidDto : IDto
+public abstract class VehicleDto : IDto
 {
     [JsonPropertyName("_id")]
     public string? Id { get; set; }
