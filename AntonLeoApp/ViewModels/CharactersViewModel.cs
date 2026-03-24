@@ -1,17 +1,22 @@
+using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using AntonLeoApp.Model.Dtos;
 using AntonLeoApp.Model.Services;
-using System.Text.Json;
-using System.Threading.Tasks;
 
 namespace AntonLeoApp.ViewModels;
 
 public partial class CharactersViewModel : ObservableObject
 {
     private readonly CharacterService _characterService;
+    
+    public ObservableCollection<CharacterDto> Characters { get; } = new();
+    
+    [ObservableProperty]
+    private bool _isLoading;
 
     [ObservableProperty]
-    private string? _rawJsonResponse;
+    private bool _isRefreshing;
 
     public CharactersViewModel(CharacterService characterService)
     {
@@ -19,20 +24,33 @@ public partial class CharactersViewModel : ObservableObject
     }
 
     [RelayCommand]
-    public async Task CheckApi()
+    public async Task LoadCharacters()
     {
-        var data = await _characterService.GetCharacters();
+        if (IsLoading) return;
 
-        if (data != null)
+        try
         {
-            RawJsonResponse = JsonSerializer.Serialize(data, new JsonSerializerOptions 
-            { 
-                WriteIndented = true
-            });
+            IsLoading = true;
+            var response = await _characterService.GetCharacters();
+
+            if (response?.Data != null)
+            {
+                Characters.Clear();
+                foreach (var character in response.Data)
+                {
+                    Characters.Add(character);
+                }
+            }
         }
-        else
+        finally
         {
-            RawJsonResponse = "Error: No data retrieved";
+            IsLoading = false;
         }
+    }
+
+    [RelayCommand]
+    public async Task GoToDetails(CharacterDto character)
+    {
+        //TODO
     }
 }
