@@ -9,21 +9,53 @@
     <Grid>
         <CollectionView ItemsSource="{Binding Characters}"
                         SelectionMode="None"
-                        Margin="10">
+                        Margin="15">
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout Orientation="Vertical" ItemSpacing="12" />
+            </CollectionView.ItemsLayout>
+
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="models:CharacterDto">
-                    <Frame Margin="0,0,0,10" Padding="10" HasShadow="True">
-                        <Frame.GestureRecognizers>
+                    <Border StrokeShape="RoundRectangle 12"
+                            StrokeThickness="0"
+                            BackgroundColor="{AppThemeBinding Light=White, Dark=#2C2C2C}"
+                            Padding="10">
+                        
+                        <Border.GestureRecognizers>
                             <TapGestureRecognizer 
                                 Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:CharactersViewModel}}, Path=GoToDetailsCommand}"
                                 CommandParameter="{Binding .}"/>
-                        </Frame.GestureRecognizers>
-                        
-                        <HorizontalStackLayout Spacing="15">
-                            <Image Source="{Binding Image}" WidthRequest="60" HeightRequest="60" Aspect="AspectFill" />
-                            <Label Text="{Binding Name}" VerticalOptions="Center" FontSize="18" FontAttributes="Bold" />
-                        </HorizontalStackLayout>
-                    </Frame>
+                        </Border.GestureRecognizers>
+
+                        <Grid ColumnDefinitions="80, *" ColumnSpacing="15">
+                            <Border Grid.Column="0"
+                                    StrokeShape="RoundRectangle 40"
+                                    HeightRequest="80"
+                                    WidthRequest="80"
+                                    HorizontalOptions="Start">
+                                <Image Source="{Binding Image}" 
+                                       Aspect="AspectFill" />
+                            </Border>
+
+                            <VerticalStackLayout Grid.Column="1" VerticalOptions="Center">
+                                <Label Text="{Binding Name}" 
+                                       FontSize="18" 
+                                       FontAttributes="Bold" 
+                                       TextColor="{AppThemeBinding Light=Black, Dark=White}" />
+                                <Label Text="Voir le détail" 
+                                       FontSize="13" 
+                                       TextColor="Gray" />
+                            </VerticalStackLayout>
+                            
+                            <Label Grid.Column="1" 
+                                   Text="›" 
+                                   FontSize="24"
+                                   HorizontalOptions="End" 
+                                   VerticalOptions="Center" 
+                                   TextColor="LightGray"
+                                   Margin="0,0,10,0"/>
+                        </Grid>
+                    </Border>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>

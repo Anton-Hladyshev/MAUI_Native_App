@@ -30,7 +30,10 @@ public partial class CharactersViewModel : ObservableObject
 
         try
         {
-            IsLoading = true;
+            if (Characters.Count == 0)
+            {
+                IsLoading = true;
+            }
             var response = await _characterService.GetCharacters();
 
             if (response?.Data != null)
