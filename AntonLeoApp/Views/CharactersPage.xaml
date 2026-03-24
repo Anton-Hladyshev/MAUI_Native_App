@@ -9,6 +9,8 @@
     <Grid>
         <CollectionView ItemsSource="{Binding Characters}"
                         SelectionMode="None"
+                        RemainingItemsThreshold="1"
+                        RemainingItemsThresholdReachedCommand="{Binding LoadMoreCommand}"
                         Margin="15">
             <CollectionView.ItemsLayout>
                 <LinearItemsLayout Orientation="Vertical" ItemSpacing="12" />
@@ -19,7 +21,9 @@
                     <Border StrokeShape="RoundRectangle 12"
                             StrokeThickness="0"
                             BackgroundColor="{AppThemeBinding Light=White, Dark=#2C2C2C}"
-                            Padding="10">
+                            Padding="10"
+                            x:Name="CharacterCard"
+                            Opacity="0">
                         
                         <Border.GestureRecognizers>
                             <TapGestureRecognizer 
@@ -34,7 +38,8 @@
                                     WidthRequest="80"
                                     HorizontalOptions="Start">
                                 <Image Source="{Binding Image}" 
-                                       Aspect="AspectFill" />
+                                       Aspect="AspectFill"
+                                       Loaded="OnImageLoaded"/>
                             </Border>
 
                             <VerticalStackLayout Grid.Column="1" VerticalOptions="Center">
@@ -58,13 +63,29 @@
                     </Border>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
+            
+            <CollectionView.Footer>
+                <VerticalStackLayout Padding="10" HorizontalOptions="Center">
+                    <ActivityIndicator IsRunning="{Binding IsLoadingMore}"
+                                       IsVisible="{Binding IsLoadingMore}"
+                                       Color="Yellow"
+                                       HeightRequest="40"
+                                       WidthRequest="40" />
+                
+                    <Label Text="Chargement des personnages suivants..."
+                           IsVisible="{Binding IsLoadingMore}"
+                           FontSize="12"
+                           TextColor="Gray"
+                           HorizontalTextAlignment="Center" />
+                </VerticalStackLayout>
+            </CollectionView.Footer>
         </CollectionView>
 
         <ActivityIndicator IsRunning="{Binding IsLoading}" 
                            IsVisible="{Binding IsLoading}"
                            VerticalOptions="Center" 
                            HorizontalOptions="Center"
-                           Color="DeepSkyBlue"
+                           Color="Yellow"
                            Scale="2" />
     </Grid>
 </ContentPage>
