@@ -4,7 +4,7 @@
              xmlns:models="clr-namespace:AntonLeoApp.Model.Dtos"
              x:DataType="viewmodels:CharactersViewModel"
              x:Class="AntonLeoApp.CharactersPage"
-             Title="Personnages">
+             Title="Characters">
 
     <Grid>
         <CollectionView ItemsSource="{Binding Characters}"
@@ -12,44 +12,48 @@
                         RemainingItemsThreshold="1"
                         RemainingItemsThresholdReachedCommand="{Binding LoadMoreCommand}"
                         Margin="15">
+
             <CollectionView.ItemsLayout>
                 <LinearItemsLayout Orientation="Vertical" ItemSpacing="12" />
             </CollectionView.ItemsLayout>
 
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="models:CharacterDto">
+                    
                     <Border StrokeShape="RoundRectangle 12"
-                            StrokeThickness="0"
                             BackgroundColor="{AppThemeBinding Light=White, Dark=#2C2C2C}"
                             Padding="10"
-                            x:Name="CharacterCard"
-                            Opacity="0">
-                        
+                            Margin="0,5"
+                            Scale="0.95"
+                            Loaded="OnCardLoaded">
+
                         <Border.GestureRecognizers>
                             <TapGestureRecognizer 
                                 Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:CharactersViewModel}}, Path=GoToDetailsCommand}"
                                 CommandParameter="{Binding .}"/>
                         </Border.GestureRecognizers>
 
-                        <Grid ColumnDefinitions="80, *" ColumnSpacing="15">
-                            <Border Grid.Column="0"
-                                    StrokeShape="RoundRectangle 40"
-                                    HeightRequest="80"
-                                    WidthRequest="80"
-                                    HorizontalOptions="Start">
-                                <Image Source="{Binding Image}" 
-                                       Aspect="AspectFill"
-                                       Loaded="OnImageLoaded"/>
-                            </Border>
+                        <Grid ColumnDefinitions="Auto, *" ColumnSpacing="15">
+                            
+                            <Border WidthRequest="90"
+                                    HeightRequest="90"
+                                    StrokeShape="RoundRectangle 20">
 
+                                <Grid>
+                                    <Image Source="{Binding Image}" 
+                                           Aspect="AspectFill"/>
+
+                                    <BoxView BackgroundColor="#30000000"
+                                             VerticalOptions="End"
+                                             HeightRequest="25"/>
+                                </Grid>
+                            </Border>
+                            
                             <VerticalStackLayout Grid.Column="1" VerticalOptions="Center">
                                 <Label Text="{Binding Name}" 
                                        FontSize="18" 
                                        FontAttributes="Bold" 
                                        TextColor="{AppThemeBinding Light=Black, Dark=White}" />
-                                <Label Text="Voir le détail" 
-                                       FontSize="13" 
-                                       TextColor="Gray" />
                             </VerticalStackLayout>
                             
                             <Label Grid.Column="1" 
@@ -59,26 +63,26 @@
                                    VerticalOptions="Center" 
                                    TextColor="LightGray"
                                    Margin="0,0,10,0"/>
+
                         </Grid>
                     </Border>
+
                 </DataTemplate>
             </CollectionView.ItemTemplate>
-            
+
             <CollectionView.Footer>
                 <VerticalStackLayout Padding="10" HorizontalOptions="Center">
                     <ActivityIndicator IsRunning="{Binding IsLoadingMore}"
                                        IsVisible="{Binding IsLoadingMore}"
-                                       Color="Yellow"
-                                       HeightRequest="40"
-                                       WidthRequest="40" />
-                
-                    <Label Text="Chargement des personnages suivants..."
+                                       Color="Yellow"/>
+                    
+                    <Label Text="Chargement..."
                            IsVisible="{Binding IsLoadingMore}"
                            FontSize="12"
-                           TextColor="Gray"
-                           HorizontalTextAlignment="Center" />
+                           TextColor="Gray"/>
                 </VerticalStackLayout>
             </CollectionView.Footer>
+
         </CollectionView>
 
         <ActivityIndicator IsRunning="{Binding IsLoading}" 
@@ -86,6 +90,6 @@
                            VerticalOptions="Center" 
                            HorizontalOptions="Center"
                            Color="Yellow"
-                           Scale="2" />
+                           Scale="2"/>
     </Grid>
 </ContentPage>

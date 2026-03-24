@@ -16,16 +16,20 @@
                    FontSize="16"
                    HorizontalOptions="Center" />
             
-            <HorizontalStackLayout Spacing="40" HorizontalOptions="Center">
+            <Grid ColumnDefinitions="*,*" ColumnSpacing="40" HorizontalOptions="Center">
+
                 <Image Source="anakin.png"
-                       WidthRequest="160"
-                       HeightRequest="160"
-                       Aspect="AspectFit"/>
-                <Image Source="dark_vader.png"
-                       WidthRequest="160"
-                       HeightRequest="160"
-                       Aspect="AspectFit"/>
-            </HorizontalStackLayout>
+                       Aspect="AspectFit"
+                       HorizontalOptions="Fill"
+                       HeightRequest="140"/>
+
+                <Image Grid.Column="1"
+                       Source="dark_vader.png"
+                       Aspect="AspectFit"
+                       HorizontalOptions="Fill"
+                       HeightRequest="140"/>
+
+            </Grid>
             
             <CarouselView x:Name="MyCarousel"
                           HeightRequest="300"
