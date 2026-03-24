@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:AntonLeoApp.ViewModels"
+             x:DataType="viewmodels:CharactersViewModel"
              x:Class="AntonLeoApp.CharactersPage"
              Title="Characters">
-    <Grid>
-        <Image Source="yoda_attack.png"
-               Aspect="AspectFit"
-                />
-        <VerticalStackLayout>
-            <Label 
-                VerticalOptions="Center" 
-                HorizontalOptions="Center" />
-        </VerticalStackLayout>
+    <Grid RowDefinitions="Auto, *">
+        <Button Grid.Row="0"
+                Text="Load Characters"
+                Command="{Binding CheckApiCommand}"
+                Margin="10" />
+                
+        <ScrollView Grid.Row="1" Margin="10">
+            <Label Text="{Binding RawJsonResponse}"
+                   LineBreakMode="CharacterWrap" />
+        </ScrollView>
     </Grid>
 </ContentPage>
