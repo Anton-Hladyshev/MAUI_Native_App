@@ -16,11 +16,11 @@ public class AppService: IAppService
     {
         try
         {
-            var dto = await _httpClient.GetFromJsonAsync<List<CharacterDto>>(AppSettings.API_DEFAULT_URL + "characters");
+            var dto = await _httpClient.GetFromJsonAsync<ApiResponse<List<CharacterDto>>>(AppSettings.API_DEFAULT_URL + "characters");
 
-            if (dto == null) return null;
+            if (dto?.Data == null) return null;
             
-            return dto;
+            return dto.Data;
         }
         catch (Exception e)
         {
@@ -67,11 +67,11 @@ public class AppService: IAppService
     {
         try
         {
-            var dto = await _httpClient.GetFromJsonAsync<List<CreatureDto>>(AppSettings.API_DEFAULT_URL + "creatures");
+            var dto = await _httpClient.GetFromJsonAsync<ApiResponse<List<CreatureDto>>>(AppSettings.API_DEFAULT_URL + "creatures");
 
-            if (dto == null) return null;
+            if (dto?.Data == null) return null;
             
-            return dto;
+            return dto.Data;
         }
         catch (Exception e)
         {
@@ -101,11 +101,11 @@ public class AppService: IAppService
     {
         try
         {
-            var dto = await _httpClient.GetFromJsonAsync<List<DroidDto>>(AppSettings.API_DEFAULT_URL + "droids");
+            var dto = await _httpClient.GetFromJsonAsync<ApiResponse<List<DroidDto>>>(AppSettings.API_DEFAULT_URL + "droids");
 
-            if (dto == null) return null;
+            if (dto?.Data == null) return null;
             
-            return dto;
+            return dto.Data;
         }
         catch (Exception e)
         {

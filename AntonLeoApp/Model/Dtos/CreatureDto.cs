@@ -5,11 +5,11 @@ namespace AntonLeoApp.Model.Dtos;
 public class CreatureDto
 {
     [JsonPropertyName("_id")]
-    public string id { get; set; }
+    public string? Id { get; set; }
     [JsonPropertyName("name")]
-    public string name { get; set; }
+    public string? Name { get; set; }
     [JsonPropertyName("description")]
-    public string description { get; set; }
+    public string? Description { get; set; }
     [JsonPropertyName("image")]
-    public string image { get; set; }
+    public string? Image { get; set; }
 }
