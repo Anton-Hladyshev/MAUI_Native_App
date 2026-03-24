@@ -67,7 +67,7 @@ public class AppService: IAppService
     {
         try
         {
-            var dto = await _httpClient.GetFromJsonAsync<List<CreatureDto>>(AppSettings.API_DEFAULT_URL + "characters");
+            var dto = await _httpClient.GetFromJsonAsync<List<CreatureDto>>(AppSettings.API_DEFAULT_URL + "creatures");
 
             if (dto == null) return null;
             
@@ -101,7 +101,7 @@ public class AppService: IAppService
     {
         try
         {
-            var dto = await _httpClient.GetFromJsonAsync<List<DroidDto>>(AppSettings.API_DEFAULT_URL + "characters");
+            var dto = await _httpClient.GetFromJsonAsync<List<DroidDto>>(AppSettings.API_DEFAULT_URL + "droids");
 
             if (dto == null) return null;
             

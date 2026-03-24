@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using AntonLeoApp.Model.Services;
+using Microsoft.Extensions.Logging;
 
 namespace AntonLeoApp;
 
@@ -18,6 +19,9 @@ public static class MauiProgram
 #if DEBUG
         builder.Logging.AddDebug();
 #endif
+
+        builder.Services.AddSingleton<HttpClient>();
+        builder.Services.AddSingleton<IAppService, AppService>();
 
         return builder.Build();
     }
