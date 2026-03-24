@@ -2,16 +2,25 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="AntonLeoApp.UserIOPage"
-             Title="UserIO"
-             >
-    <Grid>
-        <Image Source="death_star.png"
-               Aspect="AspectFit"
-                />
-        <VerticalStackLayout>
-            <Label 
-                VerticalOptions="Center" 
-                HorizontalOptions="Center" />
+             Title="UserIO">
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="15">
+            <Label Text="Add New Character" FontSize="24" FontAttributes="Bold" HorizontalOptions="Center" />
+
+            <Label Text="Name:" FontAttributes="Bold" />
+            <Entry Placeholder="Enter character name" />
+
+            <Label Text="Description:" FontAttributes="Bold" />
+            <Editor Placeholder="Enter character description" HeightRequest="100" />
+
+            <Label Text="Photo:" FontAttributes="Bold" />
+            <HorizontalStackLayout Spacing="10">
+                <Button Text="Select Photo" />
+                <Label Text="No photo selected" VerticalOptions="Center" />
+            </HorizontalStackLayout>
+            <Image HeightRequest="150" BackgroundColor="LightGray" />
+
+            <Button Text="Add Character" Margin="0,20,0,0" FontAttributes="Bold" />
         </VerticalStackLayout>
-    </Grid>
+    </ScrollView>
 </ContentPage>
