@@ -107,4 +107,8 @@
       </Compile>
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Model\Data\media\" />
+    </ItemGroup>
+
 </Project>

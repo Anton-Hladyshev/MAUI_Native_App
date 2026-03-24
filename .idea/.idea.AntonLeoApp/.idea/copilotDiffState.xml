@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CopilotDiffPersistence">
+    <option name="pendingDiffs">
+      <map>
+        <entry key="/CharecterDto (snapshot).cs">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="/CharecterDto (snapshot).cs" />
+              <option name="originalContent" value="using System.Text.Json.Serialization;&#10;&#10;namespace AntonLeoApp.Model.Dtos;&#10;&#10;public abstract class CharacterDto : IDto&#10;{&#10;    [JsonPropertyName(&quot;_id&quot;)]&#10;    public string? Id { get; set; }&#10;    [JsonPropertyName(&quot;name&quot;)]&#10;    public string? Name { get; set; }&#10;    [JsonPropertyName(&quot;description&quot;)]&#10;    public string? Description { get; set; }&#10;    [JsonPropertyName(&quot;image&quot;)]&#10;    public string? Image { get; set; }&#10;}" />
+              <option name="updatedContent" value="using System.Text.Json.Serialization;&#10;&#10;namespace AntonLeoApp.Model.Dtos;&#10;&#10;public class CharacterDto : IDto&#10;{&#10;    [JsonPropertyName(&quot;_id&quot;)]&#10;    public string? Id { get; set; }&#10;    [JsonPropertyName(&quot;name&quot;)]&#10;    public string? Name { get; set; }&#10;    [JsonPropertyName(&quot;description&quot;)]&#10;    public string? Description { get; set; }&#10;    [JsonPropertyName(&quot;image&quot;)]&#10;    public string? Image { get; set; }&#10;}" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>
