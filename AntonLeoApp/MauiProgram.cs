@@ -1,5 +1,6 @@
 ﻿using AntonLeoApp.Model.Services;
 using AntonLeoApp.ViewModels;
+using AntonLeoApp.Views;
 using Microsoft.Extensions.Logging;
 
 namespace AntonLeoApp;
@@ -26,6 +27,9 @@ public static class MauiProgram
         
         builder.Services.AddTransient<CharactersViewModel>();
         builder.Services.AddTransient<CharactersPage>();
+        
+        builder.Services.AddTransient<CharacterDetailsViewModel>();
+        builder.Services.AddTransient<CharacterDetailsPage>();
 
         return builder.Build();
     }

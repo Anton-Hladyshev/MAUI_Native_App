@@ -51,6 +51,12 @@ public partial class CharactersViewModel : ObservableObject
     [RelayCommand]
     public async Task GoToDetails(CharacterDto character)
     {
-        //TODO
+        if (character == null) return;
+
+        // Navigation vers la page de détails en passant l'objet
+        await Shell.Current.GoToAsync("CharacterDetailsPage", new Dictionary<string, object>
+        {
+            { "Character", character }
+        });
     }
 }
