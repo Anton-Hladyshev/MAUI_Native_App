@@ -3,12 +3,15 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using AntonLeoApp.Model.Dtos;
 using AntonLeoApp.Model.Services;
+using AntonLeoApp.Model.Services.UserIO;
 
 namespace AntonLeoApp.ViewModels;
 
 public partial class CharactersViewModel : ObservableObject
 {
     private readonly CharacterService _characterService;
+    private readonly UserIOController _fileController = new();
+    private readonly string _localCharactersStorage = Path.Combine(FileSystem.AppDataDirectory, "local.json");
     private int _currentPage = 1;
     private bool _hasMoreData = true;
     private bool _isFirstLoad = true;
@@ -41,11 +44,36 @@ public partial class CharactersViewModel : ObservableObject
     public async Task LoadMore()
     {
         if (IsLoading || IsLoadingMore || !_hasMoreData) return;
+        
+        await LoadFromLocalAsync();
 
         IsLoadingMore = true;
         _currentPage++;
         await LoadData();
         IsLoadingMore = false;
+    }
+    
+    private async Task LoadFromLocalAsync()
+    {
+        try 
+        {
+            var localData = await _fileController.GetAllCharacterDosAsync(); 
+        
+            if (localData != null && localData.Any())
+            {
+                foreach (var character in localData)
+                {
+                    if (Characters.All(c => c.Id != character.Id))
+                    {
+                        Characters.Add(character);
+                    }
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Ошибка чтения локального файла: {ex.Message}");
+        }
     }
     
     private async Task LoadData()
