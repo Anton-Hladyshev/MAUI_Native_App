@@ -45,4 +45,38 @@ public class AppService: IAppService
             throw;
         }
     }
+    
+    public async Task<CreatureDto> GetCreature(string creatureId)
+    {
+        try
+        {
+            var dto = await _httpClient.GetFromJsonAsync<CreatureDto>(AppSettings.API_DEFAULT_URL + creatureId);
+            
+            if (dto == null) return null;
+            
+            return dto;
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+    }
+    
+    public async Task<List<CreatureDto>> GetCreatures()
+    {
+        try
+        {
+            var dto = await _httpClient.GetFromJsonAsync<List<CreatureDto>>(AppSettings.API_DEFAULT_URL + "characters");
+
+            if (dto == null) return null;
+            
+            return dto;
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+    }
 }
