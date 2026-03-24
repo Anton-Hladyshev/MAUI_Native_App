@@ -8,20 +8,20 @@ namespace AntonLeoApp.ViewModels;
 
 public partial class CharactersViewModel : ObservableObject
 {
-    private readonly IAppService _appService;
+    private readonly CharacterService _characterService;
 
     [ObservableProperty]
-    private string _rawJsonResponse;
+    private string? _rawJsonResponse;
 
-    public CharactersViewModel(IAppService appService)
+    public CharactersViewModel(CharacterService characterService)
     {
-        _appService = appService;
+        _characterService = characterService;
     }
 
     [RelayCommand]
     public async Task CheckApi()
     {
-        var data = await _appService.GetCharacters();
+        var data = await _characterService.GetCharacters();
 
         if (data != null)
         {
