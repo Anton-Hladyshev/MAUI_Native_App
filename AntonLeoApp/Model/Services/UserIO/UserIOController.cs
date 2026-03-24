@@ -34,17 +34,28 @@ public class UserIOController
 
     public async Task SaveCharacterAsync(UserCharacter character)
     {
-        var dtos = await GetAllCharacterDosAsync();
-        
-        var characterDto = character.ToDto();
+        try
+        {
+            var dtos = await GetAllCharacterDosAsync();
+            System.Diagnostics.Debug.WriteLine($"Path: {FileSystem.AppDataDirectory}");
+            
+            var characterDto = character.ToDto();
 
-        var index = dtos.FindIndex(d => d.Id == characterDto.Id);
-        if (index == -1) 
-            dtos.Add(characterDto);
-        else
-            dtos[index] = characterDto;
-        
-        string json = JsonSerializer.Serialize(dtos, _options);
-        await File.WriteAllTextAsync(_dataPath, json);
+            var index = dtos.FindIndex(d => d.Id == characterDto.Id);
+            if (index == -1) 
+                dtos.Add(characterDto);
+            else
+                dtos[index] = characterDto;
+            
+            string json = JsonSerializer.Serialize(dtos, _options);
+            await File.WriteAllTextAsync(_dataPath, json);
+            
+            Console.WriteLine($"[UserIOController] Character successfully saved to: {_dataPath}");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"[UserIOController] Error saving character: {ex.Message}");
+            throw;
+        }
     }
 }
