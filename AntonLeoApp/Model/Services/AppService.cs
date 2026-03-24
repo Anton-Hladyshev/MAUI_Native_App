@@ -79,4 +79,38 @@ public class AppService: IAppService
             throw;
         }
     }
+    
+    public async Task<DroidDto> GetDroid(string creatureId)
+    {
+        try
+        {
+            var dto = await _httpClient.GetFromJsonAsync<DroidDto>(AppSettings.API_DEFAULT_URL + creatureId);
+            
+            if (dto == null) return null;
+            
+            return dto;
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+    }
+    
+    public async Task<List<DroidDto>> GetDroids()
+    {
+        try
+        {
+            var dto = await _httpClient.GetFromJsonAsync<List<DroidDto>>(AppSettings.API_DEFAULT_URL + "characters");
+
+            if (dto == null) return null;
+            
+            return dto;
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+    }
 }
