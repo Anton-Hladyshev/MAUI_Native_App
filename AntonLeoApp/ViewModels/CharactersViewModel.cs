@@ -3,16 +3,20 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using AntonLeoApp.Model.Dtos;
 using AntonLeoApp.Model.Services;
+using AntonLeoApp.Model.Services.UserIO;
 
 namespace AntonLeoApp.ViewModels;
 
 public partial class CharactersViewModel : ObservableObject
 {
     private readonly CharacterService _characterService;
+    private readonly UserIOController _fileController = new();
+    private readonly string _localCharactersStorage = Path.Combine(FileSystem.AppDataDirectory, "local.json");
     private int _currentPage = 1;
     private bool _hasMoreData = true;
     private bool _isFirstLoad = true;
     
+    public ObservableCollection<CharacterDto> LocalCharacters { get; } = new();
     public ObservableCollection<CharacterDto> Characters { get; } = new();
     
     [ObservableProperty]
@@ -27,11 +31,18 @@ public partial class CharactersViewModel : ObservableObject
     }
     
     [RelayCommand]
+    public async Task RefreshLocalCharacters()
+    {
+        await LoadFromLocalAsync();
+    }
+    
+    [RelayCommand]
     public async Task InitialLoad()
     {
         if (!_isFirstLoad || Characters.Count > 0) return;
 
         IsLoading = true;
+        await LoadFromLocalAsync();
         await LoadData();
         _isFirstLoad = false;
         IsLoading = false;
@@ -46,6 +57,30 @@ public partial class CharactersViewModel : ObservableObject
         _currentPage++;
         await LoadData();
         IsLoadingMore = false;
+    }
+    
+    private async Task LoadFromLocalAsync()
+    {
+        try 
+        {
+            var localData = await _fileController.GetAllCharacterDosAsync(); 
+        
+            if (localData != null && localData.Any())
+            {
+                LocalCharacters.Clear();
+                foreach (var character in localData)
+                {
+                    if (LocalCharacters.All(c => c.Id != character.Id))
+                    {
+                        LocalCharacters.Add(character);
+                    }
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Ошибка чтения локального файла: {ex.Message}");
+        }
     }
     
     private async Task LoadData()

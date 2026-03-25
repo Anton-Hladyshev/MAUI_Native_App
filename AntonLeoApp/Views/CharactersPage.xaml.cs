@@ -15,6 +15,7 @@ public partial class CharactersPage : ContentPage
     {
         base.OnAppearing();
         await _viewModel.InitialLoadCommand.ExecuteAsync(null);
+        await _viewModel.RefreshLocalCharactersCommand.ExecuteAsync(null);
     }
     
     private async void OnCardLoaded(object sender, EventArgs e)

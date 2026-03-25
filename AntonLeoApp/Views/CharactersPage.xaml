@@ -9,9 +9,64 @@
     <Grid>
         <CollectionView ItemsSource="{Binding Characters}"
                         SelectionMode="None"
-                        RemainingItemsThreshold="1"
+                        RemainingItemsThreshold="5"
                         RemainingItemsThresholdReachedCommand="{Binding LoadMoreCommand}"
-                        Margin="15">
+                        Margin="15,0,15,15">
+            
+            <CollectionView.Header>
+                <VerticalStackLayout>
+                    <!-- My Characters Section -->
+                    <Label Text="My Characters" 
+                           FontSize="18" 
+                           FontAttributes="Bold" 
+                           Margin="0,10,0,5"
+                           TextColor="{AppThemeBinding Light=Black, Dark=White}" />
+                           
+                    <VerticalStackLayout BindableLayout.ItemsSource="{Binding LocalCharacters}" Spacing="12" Margin="0,0,0,15">
+                        <BindableLayout.ItemTemplate>
+                            <DataTemplate x:DataType="models:CharacterDto">
+                                <Border StrokeShape="RoundRectangle 12"
+                                        BackgroundColor="{AppThemeBinding Light=White, Dark=#2C2C2C}"
+                                        Padding="10"
+                                        Margin="0,5"
+                                        Scale="0.95"
+                                        Loaded="OnCardLoaded">
+
+                                    <Border.GestureRecognizers>
+                                        <TapGestureRecognizer 
+                                            Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:CharactersViewModel}}, Path=GoToDetailsCommand}"
+                                            CommandParameter="{Binding .}"/>
+                                    </Border.GestureRecognizers>
+
+                                    <Grid ColumnDefinitions="Auto, *" ColumnSpacing="15">
+                                        <Border WidthRequest="90"
+                                                HeightRequest="90"
+                                                StrokeShape="RoundRectangle 20">
+                                            <Grid>
+                                                <Image Source="{Binding Image}" Aspect="AspectFill"/>
+                                                <BoxView BackgroundColor="#30000000" VerticalOptions="End" HeightRequest="25"/>
+                                            </Grid>
+                                        </Border>
+                                        
+                                        <VerticalStackLayout Grid.Column="1" VerticalOptions="Center">
+                                            <Label Text="{Binding Name}" FontSize="18" FontAttributes="Bold" TextColor="{AppThemeBinding Light=Black, Dark=White}" />
+                                        </VerticalStackLayout>
+                                        
+                                        <Label Grid.Column="1" Text="›" FontSize="24" HorizontalOptions="End" VerticalOptions="Center" TextColor="LightGray" Margin="0,0,10,0"/>
+                                    </Grid>
+                                </Border>
+                            </DataTemplate>
+                        </BindableLayout.ItemTemplate>
+                    </VerticalStackLayout>
+
+                    <!-- Star Wars Characters Section -->
+                    <Label Text="Star Wars Characters" 
+                           FontSize="18" 
+                           FontAttributes="Bold" 
+                           Margin="0,10,0,5"
+                           TextColor="{AppThemeBinding Light=Black, Dark=White}" />
+                </VerticalStackLayout>
+            </CollectionView.Header>
 
             <CollectionView.ItemsLayout>
                 <LinearItemsLayout Orientation="Vertical" ItemSpacing="12" />
