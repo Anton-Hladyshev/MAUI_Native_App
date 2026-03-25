@@ -16,6 +16,7 @@ public partial class CharactersViewModel : ObservableObject
     private bool _hasMoreData = true;
     private bool _isFirstLoad = true;
     
+    public ObservableCollection<CharacterDto> LocalCharacters { get; } = new();
     public ObservableCollection<CharacterDto> Characters { get; } = new();
     
     [ObservableProperty]
@@ -30,11 +31,18 @@ public partial class CharactersViewModel : ObservableObject
     }
     
     [RelayCommand]
+    public async Task RefreshLocalCharacters()
+    {
+        await LoadFromLocalAsync();
+    }
+    
+    [RelayCommand]
     public async Task InitialLoad()
     {
         if (!_isFirstLoad || Characters.Count > 0) return;
 
         IsLoading = true;
+        await LoadFromLocalAsync();
         await LoadData();
         _isFirstLoad = false;
         IsLoading = false;
@@ -44,8 +52,6 @@ public partial class CharactersViewModel : ObservableObject
     public async Task LoadMore()
     {
         if (IsLoading || IsLoadingMore || !_hasMoreData) return;
-        
-        await LoadFromLocalAsync();
 
         IsLoadingMore = true;
         _currentPage++;
@@ -61,11 +67,12 @@ public partial class CharactersViewModel : ObservableObject
         
             if (localData != null && localData.Any())
             {
+                LocalCharacters.Clear();
                 foreach (var character in localData)
                 {
-                    if (Characters.All(c => c.Id != character.Id))
+                    if (LocalCharacters.All(c => c.Id != character.Id))
                     {
-                        Characters.Add(character);
+                        LocalCharacters.Add(character);
                     }
                 }
             }
