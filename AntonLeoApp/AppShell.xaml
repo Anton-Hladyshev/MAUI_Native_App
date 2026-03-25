@@ -21,7 +21,7 @@
             Icon="charecter.png" />
 
         <ShellContent
-            Title="UserIO"
+            Title="New Character"
             ContentTemplate="{DataTemplate local:UserIOPage}"
             Route="UserIOPage"
             Icon="addition.png" />
