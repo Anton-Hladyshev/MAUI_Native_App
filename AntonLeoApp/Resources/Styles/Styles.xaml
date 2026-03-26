@@ -25,7 +25,8 @@
         <Setter Property="FontFamily" Value="OpenSansRegular"/>
         <Setter Property="FontAttributes" Value="Bold"/>
         <Setter Property="FontSize" Value="16"/>
-        <Setter Property="CornerRadius" Value="4"/> <Setter Property="Padding" Value="14,10"/>
+        <Setter Property="CornerRadius" Value="4"/> 
+        <Setter Property="Padding" Value="14,10"/>
         <Setter Property="MinimumHeightRequest" Value="44"/>
         <Setter Property="VisualStateManager.VisualStateGroups">
             <VisualStateGroupList>
@@ -86,7 +87,7 @@
         <Setter Property="Shell.TabBarTitleColor" Value="{StaticResource Primary}" />
         <Setter Property="Shell.TabBarUnselectedColor" Value="{StaticResource Gray500}" />
     </Style>
-
+    
     <Style TargetType="NavigationPage">
         <Setter Property="BarBackgroundColor" Value="{StaticResource Black}" />
         <Setter Property="BarTextColor" Value="{StaticResource Primary}" />
@@ -95,6 +96,26 @@
     <Style TargetType="Entry">
         <Setter Property="TextColor" Value="{StaticResource White}" />
         <Setter Property="PlaceholderColor" Value="{StaticResource Gray500}" />
+    </Style>
+    
+    <Style TargetType="Editor">
+        <Setter Property="BackgroundColor" Value="Black" />
+        <Setter Property="TextColor" Value="{StaticResource White}" />
+        <Setter Property="PlaceholderColor" Value="{StaticResource Gray600}" />
+        <Setter Property="FontFamily" Value="OpenSansRegular" />
+        <Setter Property="FontSize" Value="16" />
+        <Setter Property="AutoSize" Value="TextChanges" />
+        <Setter Property="VisualStateManager.VisualStateGroups">
+            <VisualStateGroupList>
+                <VisualStateGroup x:Name="CommonStates">
+                    <VisualState x:Name="Normal" />
+                    <VisualState x:Name="Focused">
+                        <VisualState.Setters>
+                        </VisualState.Setters>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateGroupList>
+        </Setter>
     </Style>
 
 </ResourceDictionary>
