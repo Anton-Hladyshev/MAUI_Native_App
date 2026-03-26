@@ -24,12 +24,13 @@
             Title="New Character"
             ContentTemplate="{DataTemplate local:UserIOPage}"
             Route="UserIOPage"
-            Icon="addition.png" />
+            Icon="plus.png" />
 
         <ShellContent
-            Title="Unknown"
-            ContentTemplate="{DataTemplate local:UnknownPage}"
-            Route="UnknownPage" />
+            Title="Hologram"
+            ContentTemplate="{DataTemplate local:HologramPage}"
+            Route="HologramPage"
+            Icon="hologram.png"/>
     </TabBar>
 
 </Shell>

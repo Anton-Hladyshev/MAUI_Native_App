@@ -76,7 +76,7 @@
       <MauiXaml Update="Views\CharactersPage.xaml">
         <SubType>Designer</SubType>
       </MauiXaml>
-      <MauiXaml Update="Views\UnknownPage.xaml">
+      <MauiXaml Update="Views\HologramPage.xaml">
         <SubType>Designer</SubType>
       </MauiXaml>
       <MauiXaml Update="Views\UserIOPage.xaml">
@@ -97,7 +97,7 @@
         <DependentUpon>CharactersPage.xaml</DependentUpon>
         <SubType>Code</SubType>
       </Compile>
-      <Compile Update="Views\UnknownPage.xaml.cs">
+      <Compile Update="Views\HologramPage.xaml.cs">
         <DependentUpon>UnknownPage.xaml</DependentUpon>
         <SubType>Code</SubType>
       </Compile>
