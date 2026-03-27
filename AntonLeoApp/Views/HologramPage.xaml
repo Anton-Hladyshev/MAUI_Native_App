@@ -4,5 +4,66 @@
              x:Class="AntonLeoApp.HologramPage"
              Title="Holocron">
 
+    <Grid RowDefinitions="*, Auto">
+        
+        <Grid Grid.RowSpan="2">
+            <Image Source="hologram_background_off.png" 
+                   Aspect="AspectFill" />
 
+            <Image x:Name="HoloOn"
+                   Source="hologram_background_on.png" 
+                   Aspect="AspectFill" 
+                   Opacity="0" />
+            
+        </Grid>
+        
+        <Frame x:Name="HoloContainer"
+               BackgroundColor="#CC001111"
+               BorderColor="#00E5FF"       
+               CornerRadius="10"
+               HasShadow="False"
+               IsVisible="False"
+               Opacity="0"
+               HorizontalOptions="Center"
+               VerticalOptions="End" 
+               InputTransparent="True"
+               HeightRequest="200" 
+               WidthRequest="300" 
+               Margin="0,0,0,140">
+        
+            <Label x:Name="QuoteDisplay"
+                   Text="..."
+                   TextColor="#00E5FF" 
+                   FontFamily="OpenSansRegular"
+                   FontSize="18"
+                   FontAttributes="Bold"
+                   HorizontalTextAlignment="Center"
+                   VerticalTextAlignment="Center" />
+            
+        </Frame>
+           
+           <Grid Grid.Row="1" 
+                 HorizontalOptions="Center" 
+                 VerticalOptions="End" 
+                 Margin="0,0,0,30">
+    
+                  <Button x:Name="ConnexionButton"
+                          Text="Établir Connexion"
+                          Clicked="OnCommuneClicked"
+                          WidthRequest="220"
+                          HeightRequest="50"
+                          Padding="10,0,30,0" />
+                  <Ellipse x:Name="StatusLed"
+                           WidthRequest="10"
+                           HeightRequest="10"
+                           Fill="#FF3333" 
+                           HorizontalOptions="End"
+                           VerticalOptions="Center"
+                           Margin="0,0,15,0"
+                           InputTransparent="True" />
+           </Grid>
+           
+    </Grid>
+    
 </ContentPage>
+
